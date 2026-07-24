@@ -8,6 +8,7 @@ Projeto de estudo para implementar uma API REST em Java (Spring Boot) para opera
 
 Este projeto segue a arquitetura hexagonal (Ports & Adapters). Estrutura lógica atual:
 
+
 ```
 com.projeto.itau
 ├── adapter/                    # Adaptadores (entrada/saída)
