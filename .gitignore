@@ -37,4 +37,3 @@ CONTEXTO_PROJETO.md
 
 ### Arquivo de Configuração (credenciais sensíveis) ###
 src/main/resources/application.properties
-
