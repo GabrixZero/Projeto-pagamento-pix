@@ -21,4 +21,6 @@ jobs:
           cache: maven
 
       - name: Compilar o projeto e rodar os testes
-        run: ./mvnw clean test
+        run: |
+          chmod +x ./mvnw
+          ./mvnw clean test
