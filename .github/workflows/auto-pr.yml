@@ -15,7 +15,7 @@ jobs:
 
       - name: Criar a PR via linha de comando do GitHub (gh)
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.MEU_TOKEN_GITHUB }}
         run: |
           gh pr create \
             --base develop \
