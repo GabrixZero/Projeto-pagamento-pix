@@ -9,11 +9,22 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          MYSQL_DATABASE: transacoes_pix
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping -h localhost -uroot -ppassword" --health-interval=10s --health-timeout=5s --health-retries=3
+
     steps:
       - name: Baixar o código do repositório
         uses: actions/checkout@v4
 
-      - name: Configurar o Java (JDK 17)
+      - name: Configurar o Java (JDK 25)
         uses: actions/setup-java@v4
         with:
           java-version: '25'
@@ -21,6 +32,8 @@ jobs:
           cache: maven
 
       - name: Compilar o projeto e rodar os testes
+        env:
+          SPRING_DATASOURCE_PASSWORD: ${{ secrets.DB_PASSWORD }}
         run: |
           chmod +x ./mvnw
           ./mvnw clean test
