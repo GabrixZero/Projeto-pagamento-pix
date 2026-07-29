@@ -13,13 +13,13 @@ jobs:
       - name: Baixar o código do repositório
         uses: actions/checkout@v4
 
-      - name: Criar a PR via linha de comando do GitHub (gh)
+      - name: Criar a PR via linha de comando do GitHub
         env:
           GITHUB_TOKEN: ${{ secrets.MEU_TOKEN_GITHUB }}
         run: |
           gh pr create \
             --base develop \
             --head ${{ github.ref_name }} \
-            --title "🚀 Feature: ${{ github.ref_name }}" \
+            --title "Feature: ${{ github.ref_name }}" \
             --body "Esta Pull Request foi criada automaticamente pela pipeline do GitHub Actions." \
           || echo "A Pull Request já existe, ignorando..."
