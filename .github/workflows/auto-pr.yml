@@ -1,0 +1,25 @@
+name: Criar Pull Request Automatica
+
+on:
+  push:
+    branches:
+      - 'feature/**'
+      - 'fix/**'
+
+jobs:
+  criar-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar o código do repositório
+        uses: actions/checkout@v4
+
+      - name: Criar a PR via linha de comando do GitHub (gh)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr create \
+            --base develop \
+            --head ${{ github.ref_name }} \
+            --title "🚀 Feature: ${{ github.ref_name }}" \
+            --body "Esta Pull Request foi criada automaticamente pela pipeline do GitHub Actions." \
+          || echo "A Pull Request já existe, ignorando..."
