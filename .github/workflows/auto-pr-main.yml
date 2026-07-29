@@ -1,0 +1,23 @@
+name: Criar PR de Lançamento (Develop para Main)
+
+on:
+  push:
+    branches:
+      - develop
+jobs:
+  criar-pr-main:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar o código do repositório
+        uses: actions/checkout@v4
+
+      - name: Criar a PR via linha de comando do GitHub (gh)
+        env:
+          GITHUB_TOKEN: ${{ secrets.MEU_TOKEN_GITHUB }}
+        run: |
+          gh pr create \
+            --base main \
+            --head develop \
+            --title "🚀 Lançamento: Atualização de Produção" \
+            --body "Esta Pull Request agrupa todas as novidades testadas da \`develop\` prontas para ir para a \`main\`." \
+          || echo "A PR da develop para a main já existe, os novos commits foram adicionados a ela automaticamente!"
