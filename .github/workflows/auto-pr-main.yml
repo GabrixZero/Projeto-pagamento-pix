@@ -11,13 +11,13 @@ jobs:
       - name: Baixar o código do repositório
         uses: actions/checkout@v4
 
-      - name: Criar a PR via linha de comando do GitHub (gh)
+      - name: Criar a PR via linha de comando do GitHub
         env:
           GITHUB_TOKEN: ${{ secrets.MEU_TOKEN_GITHUB }}
         run: |
           gh pr create \
             --base main \
             --head develop \
-            --title "🚀 Lançamento: Atualização de Produção" \
+            --title "Lançamento: Atualização de Produção" \
             --body "Esta Pull Request agrupa todas as novidades testadas da \`develop\` prontas para ir para a \`main\`." \
           || echo "A PR da develop para a main já existe, os novos commits foram adicionados a ela automaticamente!"
